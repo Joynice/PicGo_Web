@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Picgo_Web 在线图床</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='layui/css/layui.css') }}">
+    <script src="{{ url_for('static', filename='layui/layui.js') }}"></script>
+    {% block header %}
+
+    {% endblock %}
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">Picgo_Web 在线图床</div>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="{{ url_for('front.index') }}">上传图片</a>
+            </li>
+            <li class="layui-nav-item">
+                <a href="{{ url_for('front.about') }}">关于</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="layui-container">
+        <!-- 内容主体区域 -->
+            {% block main %}
+
+            {% endblock %}
+    </div>
+
+    <div class="layui-footer" style="text-align: center">
+        <!-- 底部固定区域 -->
+        @Picgo_Web 在线图床
+    </div>
+</div>
+<script>
+    //JavaScript代码区域
+    layui.use('element', function () {
+        var element = layui.element;
+
+    });
+</script>
+</body>
+</html>

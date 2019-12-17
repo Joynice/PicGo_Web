@@ -1,0 +1,46 @@
+{% extends 'front/front_base.html' %}
+
+{% block header %}
+    <script src="{{ url_for('static', filename='front/js/front_index.js') }}"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+{% endblock %}
+
+
+{% block main %}
+    <fieldset class="layui-elem-field layui-field-title">
+        <legend style="color: red">图片上传</legend>
+    </fieldset>
+    <div class="layui-row">
+        <div class="layui-col-md6">
+            <div class="layui-upload-drag" id="headImg">
+                <i class="layui-icon"></i>
+                <p>点击上传，或将文件拖拽到此处</p>
+            </div>
+        </div>
+        <div class="layui-col-md6">
+            <div class="layui-upload-list" style="display: none">
+                <img class="layui-upload-img headImage" id="demo1" width="200" height="150">
+                <p id="demoText"></p>
+            </div>
+        </div>
+    </div>
+    <fieldset class="layui-elem-field layui-field-title">
+        <legend style="color: blue">历史上传</legend>
+    </fieldset>
+    <div class="layui-row">
+        {% for foo in [1,1,1,1,1,1] %}
+        <div class="layui-col-md2">
+                <div class="layui-row" style="border:solid 2px #4E5465;border-radius: 5px; margin: 5px; padding: 5px">
+                    <div class="layui-col-md8">
+                        <img src="https://cdn.v2ex.com/avatar/8c04/6fc0/369824_normal.png" alt="" width="100" height="100">
+                    </div>
+                    <div class="layui-col-md4" style="padding: 10px">
+                        <button class="layui-btn layui-btn-xs layui-btn-radius layui-btn-warm" style="margin-bottom: 30px; margin-left: 10px">copy</button>
+                        <button class="layui-btn layui-btn-xs layui-btn-radius layui-btn-danger">删除</button>
+                    </div>
+                </div>
+
+        </div>
+       {% endfor %}
+    </div>
+{% endblock %}
