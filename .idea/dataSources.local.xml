@@ -4,6 +4,11 @@
     <data-source name="images" uuid="313c5d59-7c0e-4a9d-babb-898b683d4b6d">
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="SQLITE" exact-version="0" />
       <auth-required>false</auth-required>
+      <introspection-schemas>*:*</introspection-schemas>
+    </data-source>
+    <data-source name="images [2]" uuid="486bb311-6074-488f-8860-d66ff8fb5fc4">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="SQLITE" exact-version="0" />
+      <auth-required>false</auth-required>
       <introspection-schemas>*:</introspection-schemas>
     </data-source>
   </component>

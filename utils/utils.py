@@ -3,6 +3,7 @@ __author__ = 'Joynice'
 
 from config import config
 import datetime, time
+from shortuuid import uuid
 
 # 判断文件后缀是否在列表中
 def allowed_file(filename, ALLOWED_EXTENSIONS=config.ALLOWED_PIC_EXTENSIONS):
@@ -29,6 +30,19 @@ def rename(name):
     :param name:
     :return:
     '''
-    name = name.replace('/', '-').replace(':', '-')
-    new_name = now_time() + name
+    name1 = name.split('.')[-1]
+    new_name = uuid() +  '.' +name1
+
     return new_name
+
+def file_len(filename_context):
+    '''
+    判断文件大小是否满足配置
+    :param filename:文件内容
+    :return: bool
+    '''
+    size = len(filename_context)
+    if size > config.ALLOWED_PIC_LEN:
+        return False
+    else:
+        return True

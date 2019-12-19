@@ -15,26 +15,38 @@ class GithubTools(Github):
         Github.__init__(self, username, password)
 
     def __create_repo(self):
-        repo = self.get_repo('{}/{}'.format(self.username, self.repository))
-        return repo
+        try:
+            repo = self.get_repo('{}/{}'.format(self.username, self.repository))
+            return repo
+        except:
+            return '连接Github API失败，请重新测试'
 
-    def create_file(self):
+    def create_file(self, filname, content):
         repo = self.__create_repo()
-        message  = repo.create_file('img/test.txt', 'test', 'test', branch=self.branch)
-        print(message)
-
-    def delete_file(self):
-        repo = self.__create_repo()
-        contents = repo.get_contents("img/test.txt")
-        if contents:
-            message = repo.delete_file(contents.path, "remove test", contents.sha, branch=self.branch)
-            print(message)
+        if isinstance(repo, str):
+            return 0, repo
         else:
-            message = {'message': '没有该文件'}
+            try:
+                repo.create_file(path=filname, message='add {}'.format(filname), content=content, branch=self.branch) #上传路径,commit信息,上传内容,上传分支
+                return 1, 'https://raw.githubusercontent.com/{}/{}/{}/{}'.format(self.username, self.repository, self.branch, filname)
+            except Exception as e:
+                return 0, '添加失败'
+
+    def delete_file(self, filename):
+        repo = self.__create_repo()
+        if isinstance(repo, str):
+            return 0, repo
+        else:
+            contents = repo.get_contents(filename)  #获取文件内容
+            if contents:
+                repo.delete_file(contents.path, "remove {}".format(filename), contents.sha, branch=self.branch)
+                return 1, '删除成功'
+            else:
+                return 0, '删除失败'
+
 
 if __name__ == '__main__':
     g = GithubTools()
-    g.delete_file()
 
 
 

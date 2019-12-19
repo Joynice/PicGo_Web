@@ -1,46 +1,118 @@
 {% extends 'front/front_base.html' %}
 
 {% block header %}
+    <script src="{{ url_for('static', filename='front/js/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='front/js/front_index.js') }}"></script>
+    <script src="{{ url_for('static', filename='front/js/zoomify.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='front/css/bootstrap-grid.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='front/css/zoomify.min.css') }}">
+    <script type="text/javascript" src="http://www.jq22.com/demo/clipboard.js-master201703170013/dist/clipboard.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='front/css/front_index.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 {% endblock %}
 
 
 {% block main %}
     <fieldset class="layui-elem-field layui-field-title">
-        <legend style="color: red">图片上传</legend>
+        <legend style="color: red" class="upload_text">图片上传</legend>
     </fieldset>
     <div class="layui-row">
-        <div class="layui-col-md6">
+        <div class="layui-col-md4">
             <div class="layui-upload-drag" id="headImg">
                 <i class="layui-icon"></i>
                 <p>点击上传，或将文件拖拽到此处</p>
             </div>
         </div>
-        <div class="layui-col-md6">
-            <div class="layui-upload-list" style="display: none">
-                <img class="layui-upload-img headImage" id="demo1" width="200" height="150">
-                <p id="demoText"></p>
+        <div class="layui-col-md4" id="show" style="display: none">
+            <div class="layui-row" id="out_show_div">
+                <div class="layui-col-md8" id="show_div">
+                    <img src=""
+                         width="200"
+                         height="150" class="pic">
+                </div>
+                <div class="layui-col-md4" style="padding: 10px" id="show_btn">
+                    <button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-warm copy" id="copy">copy</button>
+                    <button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger delete" data="show">删除</button>
+                </div>
             </div>
         </div>
     </div>
     <fieldset class="layui-elem-field layui-field-title">
         <legend style="color: blue">历史上传</legend>
     </fieldset>
-    <div class="layui-row">
-        {% for foo in [1,1,1,1,1,1] %}
-        <div class="layui-col-md2">
-                <div class="layui-row" style="border:solid 2px #4E5465;border-radius: 5px; margin: 5px; padding: 5px">
-                    <div class="layui-col-md8">
-                        <img src="https://cdn.v2ex.com/avatar/8c04/6fc0/369824_normal.png" alt="" width="100" height="100">
+    <div class="layui-row" id="history">
+        {% if images %}
+            {% for image in images %}
+                <div class="layui-col-md2">
+                    <div class="layui-row" id="out_show_div">
+                        <div class="layui-col-md8">
+                            <img src="{{ url_for('static', filename='img/loading.gif') }}" lay-src="{{ image.link }}"
+                                 alt="{{ image.name }}" width="100"
+                                 height="100" class="pic">
+                        </div>
+                        <div class="layui-col-md4" style="padding: 10px">
+                            <button class="layui-btn layui-btn-xs layui-btn-radius layui-btn-warm copy" id="copy"
+                                    data-clipboard-text="{{ image.link }}">copy
+                            </button>
+                            <button class="layui-btn layui-btn-xs layui-btn-radius layui-btn-danger delete"
+                                    data-id="{{ image.id }}">删除
+                            </button>
+                        </div>
                     </div>
-                    <div class="layui-col-md4" style="padding: 10px">
-                        <button class="layui-btn layui-btn-xs layui-btn-radius layui-btn-warm" style="margin-bottom: 30px; margin-left: 10px">copy</button>
-                        <button class="layui-btn layui-btn-xs layui-btn-radius layui-btn-danger">删除</button>
-                    </div>
-                </div>
 
-        </div>
-       {% endfor %}
+                </div>
+            {% endfor %}
+        {% else %}
+            <h3>暂无图片上传，赶紧上传吧</h3>
+        {% endif %}
     </div>
+    <script>
+        $('.pic').zoomify(); //图片放大
+
+        $(function () {    //copy链接
+            var clipboard = new Clipboard('.copy');
+            clipboard.on('success', function (e) {
+                layer.msg("已拷贝到粘贴版");
+            });
+
+            clipboard.on('error', function (e) {
+                console.log(e);
+            });
+
+        });
+        $(function () {
+            $(".delete").click(function (event) {
+                event.preventDefault();
+                var self = $(this);
+                var id = self.attr('data-id');
+                layer.load(0, {shade: false});
+                $.ajax({
+                    url:'/delete/',
+                    type:'POST',
+                    headers:{
+                        'X-CSRFToken':$('meta[name=csrf-token]').attr('content')
+                    },
+                    data:{
+                        'id': id,
+                    },
+                    success: function (data) {
+                         layer.closeAll('loading');
+                        if(data['code'] === 200) {
+                            if(self.attr('data')==='show'){
+                            self.parent().parent().parent().css('display','none');}
+                            else {
+                                self.parent().parent().css('display','none')
+                            }
+                            layer.msg(data['message'])
+                        }else {
+                            layer.msg(data['message'])
+                        }
+                    }
+
+
+                })
+            })
+        })
+    </script>
+
 {% endblock %}

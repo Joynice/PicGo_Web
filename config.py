@@ -7,12 +7,20 @@ class config:
     DEBUG = True
     SECRET_KEY = 'HELLO WORLD'
 
+    #存储地点：
+    # 1. 当前服务器作作为图床:server,
+    # 2. github作为图床:github
+    STORE_TYPE = 'server'
+
     #github 配置
     GITHUB_USERNAME = 'Joynice'
     GITHUB_PASSWORD = 'liran123/'
     REPOSITORIES = 'image'  #仓库名
     BRANCH = 'master' #分支
-    PATH = 'img' # 存储路径
+    PATH = 'test' # 存储路径
+
+    # server 配置
+    LOCAL_STORAGE_PATH = os.path.join(os.getcwd(),'static','images') #默认存储到项目static/images文件夹下
 
     #sqlite配置
     SQLALCHEMY_DATABASE_URI = 'sqlite:///images.db'
@@ -20,4 +28,4 @@ class config:
 
     #图片配置
     ALLOWED_PIC_EXTENSIONS = ('png', 'jpg', 'gif', 'jpeg', 'JPG', 'PNG', 'GIF', 'JPEG')
-    ALLOWED_PIC_LEN = 10*1024
+    ALLOWED_PIC_LEN = 10*1024*1024
