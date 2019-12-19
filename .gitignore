@@ -19,7 +19,6 @@ lib64/
 parts/
 sdist/
 .idea
-.images/*
 migrations/
 var/
 wheels/
