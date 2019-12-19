@@ -18,8 +18,8 @@ lib/
 lib64/
 parts/
 sdist/
-idea/
-.images/
+.idea
+.images/*
 migrations/
 var/
 wheels/
