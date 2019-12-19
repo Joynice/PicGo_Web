@@ -6,6 +6,7 @@
     <title>Picgo_Web 在线图床</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='layui/css/layui.css') }}">
     <script src="{{ url_for('static', filename='layui/layui.js') }}"></script>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
     {% block header %}
 
     {% endblock %}
@@ -33,7 +34,7 @@
 
     <div class="layui-footer" style="text-align: center">
         <!-- 底部固定区域 -->
-        @Picgo_Web 在线图床
+        <a href="https://github.com/Joynice/PicGo_Web">@Picgo_Web 在线图床</a>
     </div>
 </div>
 <script>

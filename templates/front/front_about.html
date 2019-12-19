@@ -2,10 +2,44 @@
 
 
 {% block header %}
-
+    <link rel="stylesheet" href="{{ url_for('static', filename='front/css/front_about.css') }}">
 {% endblock %}
 
 {% block main %}
-    <h3>关于</h3>
-    <p>忙里抽闲写个这个工具,灵感来源于<a href="PicGo">PicGo</a></p>
+    <div>
+
+        <h1>关于</h1>
+
+        <h2>缘由</h2>
+
+        <p>忙里抽闲写了这个图床工具，灵感来自于<a href="https://github.com/Molunerfinn/PicGo">PicGo</a>,在使用过程中发现这个工具的强大
+            于是模仿写了个<code>Web</code>端的工具，方便自己搭建一个简易的图床。</p>
+
+        <h2>应用说明</h2>
+
+        <p>PicGo_Web目前支持</p>
+
+        <ul>
+            <li>Github</li>
+            <li>个人服务器</li>
+        </ul>
+
+        <p><em>目前支持的方式比较少，但是也是最稳定的两个图床选择</em></p>
+
+        <p><code>Github</code>：虽然国内访问慢，但是可以保证图片存在的永久性，插个话“Github都准备把全球开源代码保存在北极，至少保存1000年，那
+            岂不是子子孙孙都能找到你当前上传的图片，哈哈”。这个图床的设计主要是方便那些没有个人服务器的小伙伴们，在github创建个仓库，就可以
+            作为图床，保存你上传的图片。</p>
+
+        <p><code>个人服务器</code>：如果你不满足于github的速度，你可以选择个人服务器，但是服务器到期的时候，图床也就失效了，个人还是觉得github还是不错的，
+            白嫖，嘻嘻</p>
+        <p style="color: red">禁止使用本网站上传黄色、暴力、等图片，所造成的影响由本人承担。</p>
+
+        <h2>贡献</h2>
+
+        <p>如果你觉得这个工具，还可以，不妨赏点:</p>
+
+        <p><img alt="微信" src="https://raw.githubusercontent.com/Joynice/image/master/img/wx.JPG"/>
+            <img alt="支付宝" src="https://raw.githubusercontent.com/Joynice/image/master/img/zfb.JPG"/></p>
+    </div>
+
 {% endblock %}

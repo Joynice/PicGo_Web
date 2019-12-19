@@ -62,7 +62,7 @@ class ImageView(views.MethodView):
             else:
                 return field.params_error(message=link)
         elif config.STORE_TYPE == 'server':  # 本地存储
-            img = open(os.path.join(config.LOCAL_STORAGE_PATH ,new_name),'wb')
+            img = open(os.path.join(config.LOCAL_STORAGE_PATH, new_name), 'wb')
             img.write(content)
             img.close()
             link = request.url_root + 'static/images/' + new_name
@@ -80,10 +80,10 @@ class AboutView(views.MethodView):
     '''
 
     def get(self):
-        pass
+        return render_template('front/front_about.html')
 
     def post(self):
-        pass
+        return field.params_error(message='不支持该方法')
 
 
 class DeleteImageView(views.MethodView):
@@ -109,7 +109,7 @@ class DeleteImageView(views.MethodView):
             db.session.commit()
             return field.success(message=message)
         elif image.type == 'server':
-            path = os.path.join(config.LOCAL_STORAGE_PATH ,filename)
+            path = os.path.join(config.LOCAL_STORAGE_PATH, filename)
             if os.path.exists(path):
                 os.remove(path)
                 db.session.delete(image)

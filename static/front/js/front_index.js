@@ -1,9 +1,14 @@
-layui.use(['upload', 'flow'], function () {
+layui.use(['upload', 'flow','layer'], function () {
     var $ = layui.$;
     var token = $("meta[name='csrf-token']").attr('content');
     var upload = layui.upload;
     var flow = layui.flow;
     flow.lazyimg();
+
+    layer.photos({
+        photos: '.show_div'
+        , anim: 5 //0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数）
+    });
 
 
     //图片上传

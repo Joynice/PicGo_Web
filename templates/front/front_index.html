@@ -3,9 +3,6 @@
 {% block header %}
     <script src="{{ url_for('static', filename='front/js/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='front/js/front_index.js') }}"></script>
-    <script src="{{ url_for('static', filename='front/js/zoomify.min.js') }}"></script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='front/css/bootstrap-grid.min.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='front/css/zoomify.min.css') }}">
     <script type="text/javascript" src="http://www.jq22.com/demo/clipboard.js-master201703170013/dist/clipboard.min.js"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='front/css/front_index.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -13,7 +10,7 @@
 
 
 {% block main %}
-    <fieldset class="layui-elem-field layui-field-title">
+    <fieldset class="layui-elem-field layui-field-title" id="top">
         <legend style="color: red" class="upload_text">图片上传</legend>
     </fieldset>
     <div class="layui-row">
@@ -25,7 +22,7 @@
         </div>
         <div class="layui-col-md4" id="show" style="display: none">
             <div class="layui-row" id="out_show_div">
-                <div class="layui-col-md8" id="show_div">
+                <div class="layui-col-md8 show_div" id="show_div">
                     <img src=""
                          width="200"
                          height="150" class="pic">
@@ -45,7 +42,7 @@
             {% for image in images %}
                 <div class="layui-col-md2">
                     <div class="layui-row" id="out_show_div">
-                        <div class="layui-col-md8">
+                        <div class="layui-col-md8 show_div">
                             <img src="{{ url_for('static', filename='img/loading.gif') }}" lay-src="{{ image.link }}"
                                  alt="{{ image.name }}" width="100"
                                  height="100" class="pic">
@@ -67,8 +64,6 @@
         {% endif %}
     </div>
     <script>
-        $('.pic').zoomify(); //图片放大
-
         $(function () {    //copy链接
             var clipboard = new Clipboard('.copy');
             clipboard.on('success', function (e) {
