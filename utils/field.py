@@ -1,7 +1,6 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'Joynice'
-from flask import jsonify
-import json
+
 
 class HttpCode(object):
     ok = 200
