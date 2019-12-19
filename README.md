@@ -1,14 +1,12 @@
 # PicGo_Web
 
-### 缘由
+## 缘由
 
----
 忙里抽闲写了这个图床工具，灵感来自于[PicGo](https://github.com/Molunerfinn/PicGo),在使用过程中发现这个工具的强大
 于是模仿写了个`Web`端的工具，方便自己搭建一个简易的图床。
 
-### 应用说明
+## 应用说明
 
----
 PicGo_Web目前支持
 
 - Github
@@ -23,9 +21,8 @@ PicGo_Web目前支持
 `个人服务器`：如果你不满足于github的速度，你可以选择个人服务器，但是服务器到期的时候，图床也就失效了，个人还是觉得github还是不错的，
 白嫖，嘻嘻
 
-### 如何使用
+## 如何使用
 
----
 ![界面](https://raw.githubusercontent.com/Joynice/image/master/img/picweb.JPG)
 
 本程序`Flask`框架开发，前端使用`layui`，对于没有美感的我，可以说前端设计真是对`layui`的侮辱。
@@ -77,9 +74,8 @@ python run.py
 
 > 以上步骤可以启动程序，如果你想要高性能部署(gunicorn+nginx)，参照文章:[Gunicorn+Nginx部署Flask项目](http://lr.dropsec.xyz/2019/12/14/Gunicorn-Nginx%E9%83%A8%E7%BD%B2Flask%E9%A1%B9%E7%9B%AE/)
 
-### 贡献
+## 贡献
 
----
 如果你觉得这个工具，还可以，不妨赏点:
 
 ![微信](https://raw.githubusercontent.com/Joynice/image/master/img/wx.JPG)
