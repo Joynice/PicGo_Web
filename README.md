@@ -25,7 +25,7 @@ PicGo_Web目前支持
 
 ![界面](https://raw.githubusercontent.com/Joynice/image/master/img/picweb.JPG)
 
-本程序`Flask`框架开发，前端使用`layui`，对于没有美感的我，可以说前端设计真是对`layui`的侮辱。
+本程序`Flask`框架开发，前端使用`layui`
 
 **环境：python3.0+**
 
