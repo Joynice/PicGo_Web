@@ -70,7 +70,7 @@ LOCAL_STORAGE_PATH = os.path.join(os.getcwd(),'static','images') #默认存储�
 ```text
 python run.py
 ```
-如果有hug，请及时issues，定会及时回复
+如果有bug，请及时issues，定会及时回复
 
 > 以上步骤可以启动程序，如果你想要高性能部署(gunicorn+nginx)，参照文章:[Gunicorn+Nginx部署Flask项目](http://lr.dropsec.xyz/2019/12/14/Gunicorn-Nginx%E9%83%A8%E7%BD%B2Flask%E9%A1%B9%E7%9B%AE/)
 
